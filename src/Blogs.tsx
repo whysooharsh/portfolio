@@ -8,8 +8,8 @@ const Blogs = () => {
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Spotlight />
       </div>
-      <div className="w-full flex justify-center items-center px-12 py-8 z-40 sticky top-0">
-        <div className="flex gap-16 text-3xl">
+      <div className="w-full flex justify-center items-center py-6 z-40 sticky top-0">
+        <div className="flex sm:gap-16 sm:text-xl md:text-sm">
           <Link to="/" className="text-white hover:text-purple-300 transition-colors font-semibold">Home</Link>
           <Link to="/blogs" className="text-white hover:text-purple-300 transition-colors font-semibold">Blogs</Link>
         </div>

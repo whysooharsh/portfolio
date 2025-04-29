@@ -7,11 +7,11 @@ type ListProps = {
 
 export function List({ items, className }: ListProps) {
   return (
-    <ul className={`flex flex-wrap justify-center gap-8 ${className}`}>
+    <ul className={`flex flex-wrap justify-center gap-6 ${className}`}>
       {items.map((item, index) => (
         <li
           key={index}
-          className="bg-purple-800/40 px-8 py-4 rounded-xl font-semibold text-3xl text-gray-200"
+          className="bg-gray-800 lg:px-7 lg:py-3 md:px-6 md:py-3 px-4 py-2 rounded-xl font-semibold lg:text-sm text-base text-gray-200"
         >
           {item}
         </li>
