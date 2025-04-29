@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { Spotlight } from "./components/spotlight-new.tsx";
 import { ScrollProgress } from "./components/scroll-progress.tsx";
 import { Section } from "./components/Section.tsx";
@@ -9,6 +10,8 @@ import { faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Blogs from "./Blogs.tsx";
 import FloatingDockDemo from "./components/floating-dock-demo.tsx";
+import EntryPage from "./components/EntryPage.tsx";
+import InterstellarLinkedInButton from "./components/AnimatedLinkedInLink.tsx";
 
 function MainPage() {
   return (
@@ -19,9 +22,7 @@ function MainPage() {
 
       <div className="relative z-10 flex justify-center">
         <div className="lg:w-[50%] w-[70%] max-w-5xl px-6">
-
           <ScrollProgress />
-
           <div className="w-full flex justify-center items-center py-6 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
             <div className="flex gap-8 sm:gap-16 text-lg sm:text-xl md:text-lg">
               <a href="#home" className="text-white hover:text-purple-300 transition-colors font-semibold">
@@ -150,7 +151,7 @@ function MainPage() {
               Drop a "Hi" if you want to connect!
             </p>
             <div className="flex justify-center gap-6 text-xl">
-              <SocialLink href="https://linkedin.com/in/harsharma45" label="LinkedIn" />
+              <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
             </div>
           </Section>
 
@@ -163,13 +164,23 @@ function MainPage() {
 }
 
 function AppComponent() {
+  const [showEntryPage, setShowEntryPage] = useState(true);
+  
+  const handleEntryComplete = () => {
+    setShowEntryPage(false);
+  };
+  
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/blogs" element={<Blogs />} />
-      </Routes>
-    </Router>
+    <>
+      {showEntryPage && <EntryPage onComplete={handleEntryComplete} />}
+      
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/blogs" element={<Blogs />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

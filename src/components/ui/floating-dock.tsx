@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 import {
   AnimatePresence,
   MotionValue,
@@ -8,6 +9,10 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+
+function isInternal(href: string) {
+  return href.startsWith("/") && !href.startsWith("//");
+}
 
 export const FloatingDock = ({
   items,
@@ -71,38 +76,40 @@ function IconContainer({
 
   const [hovered, setHovered] = React.useState(false);
 
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : "_self"}
-      rel="noopener noreferrer"
+  const content = (
+    <motion.div
+      ref={ref}
+      style={{ width: animatedSize, height: animatedSize }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex items-center justify-center rounded-full shadow-xl border-none"
     >
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 2, x: "-50%" }}
+            className="absolute -top-10 left-1/2 whitespace-nowrap rounded-md border border-gray-700 bg-black/90 px-3 py-1 text-sm max-sm:text-xs max-sm:-top-8 text-white shadow-md"
+          >
+            {title}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <motion.div
-        ref={ref}
-        style={{ width: animatedSize, height: animatedSize }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="relative flex items-center justify-center rounded-full shadow-xl border-none"
+        style={{ width: animatedIconSize, height: animatedIconSize }}
+        className="flex items-center justify-center"
       >
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute -top-10 left-1/2 whitespace-nowrap rounded-md border border-gray-700 bg-black/90 px-3 py-1 text-sm max-sm:text-xs max-sm:-top-8 text-white shadow-md"
-            >
-              {title}
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <motion.div
-          style={{ width: animatedIconSize, height: animatedIconSize }}
-          className="flex items-center justify-center"
-        >
-          {icon}
-        </motion.div>
+        {icon}
       </motion.div>
+    </motion.div>
+  );
+
+  return isInternal(href) ? (
+    <Link to={href}>{content}</Link>
+  ) : (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {content}
     </a>
   );
 }

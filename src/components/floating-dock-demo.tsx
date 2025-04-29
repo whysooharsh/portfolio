@@ -12,22 +12,22 @@ export default function FloatingDockDemo() {
   const links = [
     {
       title: "Home",
-      icon: <IconHome className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-200 dark:text-neutral-100" />,
-      href: "#home",
+      icon: <IconHome className="..." />,
+      href: "/",
     },
     {
       title: "Blog",
-      icon: <IconBook className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-200 dark:text-neutral-100" />,
+      icon: <IconBook className="..." />,
       href: "/blogs",
     },
     {
       title: "Projects",
-      icon: <IconLayoutList className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-200 dark:text-neutral-100" />,
+      icon: <IconLayoutList className="..." />,
       href: "#projects",
     },
     {
       title: "LinkedIn",
-      icon: <IconBrandLinkedin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 dark:text-blue-300" />,
+      icon: <IconBrandLinkedin className="..." />,
       href: "https://linkedin.com/in/harsharma45",
     },
     {
