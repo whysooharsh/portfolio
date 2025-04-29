@@ -16,7 +16,6 @@ const Blogs = () => {
       </div>
       <div className="relative z-10 w-full flex flex-col items-center pt-24">
         <section className="max-w-4xl w-full mx-auto px-8 py-16 bg-black/80 rounded-3xl shadow-2xl text-center">
-          <h2 className="text-6xl font-extrabold text-white mb-10 tracking-tight">Blogs</h2>
           <div className="space-y-8 text-left">
             <details className="bg-black/60 rounded-2xl px-6 py-6 cursor-pointer group">
               <summary className="text-3xl font-bold text-purple-300 mb-2 outline-none group-open:text-purple-400 transition-colors">My Favorite Programming Resources</summary>
