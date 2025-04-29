@@ -1,12 +1,12 @@
 import * as React from "react";
-import { SpotlightNewDemo } from "./components/spotlight";
+import { Spotlight } from "./components/spotlight-new.tsx";
 import { Link } from "react-router-dom";
 
 const Blogs = () => {
   return (
     <div className="font-FiraSans w-full min-h-screen bg-black overflow-hidden flex flex-col items-center">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <SpotlightNewDemo />
+        <Spotlight />
       </div>
       <div className="w-full flex justify-center items-center px-12 py-8 z-40 sticky top-0">
         <div className="flex gap-16 text-3xl">

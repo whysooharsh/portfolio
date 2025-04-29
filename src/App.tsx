@@ -1,20 +1,20 @@
 import * as React from "react";
-import { SpotlightNewDemo } from "./components/spotlight";
-import { ScrollProgress } from "./components/scroll-progress";
-import { Section } from "./components/Section";
-import { List } from "./components/List";
-import { SocialLink } from "./components/SocialLink";
+import { Spotlight } from "./components/spotlight-new.tsx";
+import { ScrollProgress } from "./components/scroll-progress.tsx";
+import { Section } from "./components/Section.tsx";
+import { List } from "./components/List.tsx";
+import { SocialLink } from "./components/SocialLink.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
+import { faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Blogs from "./Blogs";
-import FloatingDockDemo from "./components/floating-dock-demo";
+import Blogs from "./Blogs.tsx";
+import FloatingDockDemo from "./components/floating-dock-demo.tsx";
 
 function MainPage() {
   return (
     <div className="font-FiraSans w-full min-h-screen bg-black overflow-hidden">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <SpotlightNewDemo />
+        <Spotlight />
       </div>
       <div className="relative z-10">
         <ScrollProgress />
@@ -163,7 +163,7 @@ function MainPage() {
   );
 }
 
-function App() {
+function AppComponent() {
   return (
     <Router>
       <Routes>
@@ -174,4 +174,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppComponent;
