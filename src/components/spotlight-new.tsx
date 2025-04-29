@@ -18,12 +18,12 @@ export const Spotlight = ({
   gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210, 100%, 95%, .15) 0, hsla(210, 100%, 75%, .05) 50%, hsla(210, 100%, 55%, 0) 80%)",
   gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 95%, .12) 0, hsla(210, 100%, 75%, .04) 80%, transparent 100%)",
   gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 95%, .10) 0, hsla(210, 100%, 55%, .03) 80%, transparent 100%)",
-  translateY = -350,
-  width = 560,
-  height = 1380,
-  smallWidth = 240,
+  translateY = -125,
+  width = 200,
+  height = 490,
+  smallWidth = 90,
   duration = 7,
-  xOffset = 100,
+  xOffset = 35,
 }: SpotlightProps = {}) => {
   return (
     <motion.div
