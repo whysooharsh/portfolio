@@ -1,22 +1,22 @@
-import { ReactNode } from "react";
-
-interface ListProps {
-  items: string[];
-  className?: string;
-  itemComponent?: (item: string) => ReactNode;
-}
-
-export const List = ({ items, className = "", itemComponent }: ListProps) => {
-  return (
-    <ul className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 ${className}`}>
-      {items.map((item, index) => (
-        <li key={index} className="flex items-center space-x-2">
-          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-          <div className="text-gray-200 font-medium">
-            {itemComponent ? itemComponent(item) : item}
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-};
+import * as React from "react";
+ 
+ type ListProps = {
+   items: string[];
+   className?: string;
+ };
+ 
+ export function List({ items, className }: ListProps) {
+   return (
+     <ul className={`flex flex-wrap justify-center gap-6 ${className}`}>
+       {items.map((item, index) => (
+         <li
+           key={index}
+           className="bg-gray-800 lg:px-7 lg:py-3 md:px-6 md:py-3 px-4 py-2 rounded-xl font-semibold lg:text-sm text-base text-gray-200"
+         >
+           {item}
+         </li>
+       ))}
+     </ul>
+   );
+  
+  }

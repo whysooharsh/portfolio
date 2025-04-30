@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Spotlight } from "./components/spotlight-new.tsx";
 import { ScrollProgress } from "./components/scroll-progress.tsx";
 import { Section } from "./components/Section.tsx";
@@ -11,6 +11,7 @@ import Blogs from "./Blogs.tsx";
 import FloatingDockDemo from "./components/floating-dock-demo.tsx";
 import InterstellarLinkedInButton from "./components/AnimatedLinkedInLink.tsx";
 import ScrambleIn from "./components/ScrambleIn.tsx";
+
 
 function MainPage() {
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -183,47 +184,38 @@ function MainPage() {
           </Section>
 
           <Section id="skills" title={
+  <div className="text-center w-full">
+    <ScrambleIn
+      text="Skills"
+      scrambleSpeed={40}
+      className="text-white"
+      scrambledClassName="text-purple-300"
+    />
+  </div>
+}>
+  <List
+    items={[
+      "C++",
+      "ReactJS",
+      "NodeJS",
+      "ExpressJS",
+      "JavaScript",
+      "Tailwind CSS",
+      "MongoDB",
+    ]} className="sm:text-sm"
+  />
+</Section>
+
+          <Section id="projects" title={
             <ScrambleIn
-              text="Skills"
-              scrambleSpeed={40}
+              text="Projects"
+              scrambleSpeed={50}
+              scrambledLetterCount={3}
               className="text-white"
               scrambledClassName="text-purple-300"
             />
           }>
-            <List
-              items={[
-                "C++",
-                "ReactJS",
-                "NodeJS",
-                "ExpressJS",
-                "JavaScript",
-                "Tailwind CSS",
-                "MongoDB",
-              ]} 
-              className="sm:text-sm"
-              itemComponent={(item) => (
-                <ScrambleIn
-                  text={item}
-                  scrambleSpeed={30}
-                  className="text-gray-200"
-                  scrambledClassName="text-purple-300"
-                  autoStart={hasScrolled}
-                />
-              )}
-            />
-          </Section>
-
-          <section id="projects" className="mt-28 px-4 py-20 rounded-3xl text-center mb-32">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-10 tracking-tight">
-              <ScrambleIn
-                text="Projects"
-                scrambleSpeed={50}
-                scrambledLetterCount={3}
-                className="text-white"
-                scrambledClassName="text-purple-300"
-              />
-            </h2>
-            <ul className="space-y-14">
+            <ul className="space-y-14 text-center sm:text-left">
               <li>
                 <h3 className="text-2xl font-bold text-purple-300 mb-4">
                   <ScrambleIn
@@ -285,31 +277,27 @@ function MainPage() {
                 </p>
               </li>
             </ul>
-          </section>
-
-          <Section id="contact-me" title={
-            <ScrambleIn
-              text="Contact Me"
-              scrambleSpeed={40}
-              className="text-white"
-              scrambledClassName="text-purple-300"
-            />
-          }>
-            <p className="text-xl sm:text-2xl text-gray-200 font-medium mb-8">
-              <ScrambleIn
-                text='Drop a "Hi" if you want to connect!'
-                scrambleSpeed={30}
-                className="text-gray-200"
-                scrambledClassName="text-purple-200"
-                autoStart={hasScrolled}
-              />
-            </p>
-            <div className="flex justify-center gap-6 text-xl">
-              <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
-            </div>
           </Section>
 
-          <div className="h-60" />
+        <Section id="contact-me" title={
+  <div className="text-center w-full">
+    <ScrambleIn
+      text="Contact Me"
+      scrambleSpeed={40}
+      className="text-white"
+      scrambledClassName="text-purple-300"
+    />
+  </div>
+}>
+  <p className="text-xl sm:text-2xl text-gray-200 font-medium mb-8 text-center">
+    Drop a "Hi" if you want to connect!
+  </p>
+  <div className="flex justify-center gap-6 text-xl">
+    <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
+  </div>
+</Section>
+
+          <div className="h-40" />
           <FloatingDockDemo />
         </div>
       </div>
@@ -318,10 +306,11 @@ function MainPage() {
 }
 
 function AppComponent() {
+   
   
   return (
     <>
-      
+       
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} />

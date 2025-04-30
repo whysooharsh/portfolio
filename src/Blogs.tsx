@@ -66,9 +66,7 @@ const Blogs = () => {
         </section>
       </div>
 
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <FloatingDockDemo />
-      </div>
+   
     </div>
   );
 };

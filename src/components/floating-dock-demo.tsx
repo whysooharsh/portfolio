@@ -20,11 +20,7 @@ export default function FloatingDockDemo() {
       icon: <IconBook className="..." />,
       href: "/blogs",
     },
-    {
-      title: "Projects",
-      icon: <IconLayoutList className="..." />,
-      href: "#projects",
-    },
+
     {
       title: "LinkedIn",
       icon: <IconBrandLinkedin className="..." />,
