@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-export default function InterstellarLinkedInButton() {
+interface InterstellarLinkedInButtonProps {
+  href: string;
+}
+
+export default function InterstellarLinkedInButton({ href }: InterstellarLinkedInButtonProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,7 +30,6 @@ export default function InterstellarLinkedInButton() {
     const animate = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
       ctx.fillRect(0, 0, w, h);
-
       const centerX = w / 2;
       const centerY = h / 2;
       const blackHoleRadius = 20;
@@ -80,7 +83,7 @@ export default function InterstellarLinkedInButton() {
 
         ctx.beginPath();
         const opacity = Math.min(1, 3 / (distance / blackHoleRadius));
-        ctx.fillStyle = `hsla(${p.hue}, 0%, 60%, ${opacity})`; // Removed blue, using grey shades
+        ctx.fillStyle = `hsla(${p.hue}, 0%, 60%, ${opacity})`;
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       });
@@ -113,7 +116,7 @@ export default function InterstellarLinkedInButton() {
         style={{ background: 'black', borderRadius: '50%' }}
       />
       <a
-        href="https://www.linkedin.com/"
+        href={href} // Use the href prop here instead of hardcoded value
         target="_blank"
         rel="noopener noreferrer"
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

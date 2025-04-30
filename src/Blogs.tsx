@@ -45,7 +45,7 @@ const Blogs = () => {
 
             <details className="bg-black/60 rounded-2xl px-6 py-6 cursor-pointer group">
               <summary className="text-xl font-bold text-purple-300 mb-2 outline-none group-open:text-purple-400 transition-colors">
-                Getting Started with React
+                Resources I found useful
               </summary>
               <div className="mt-4 text-sm text-gray-200">
                 Learn the basics of React and master advanced concepts with this

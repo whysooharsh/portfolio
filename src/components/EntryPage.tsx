@@ -1,24 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-interface Star {
-  orbital: number;
-  x: number;
-  y: number;
-  yOrigin: number;
-  speed: number;
-  rotation: number;
-  startRotation: number;
-  id: number;
-  collapseBonus: number;
-  color: string;
-  hoverPos: number;
-  expansePos: number;
-  prevR: number;
-  prevX: number;
-  prevY: number;
-  draw: () => void;
-}
-
 interface EntryPageProps {
   onComplete: () => void;
 }
@@ -26,51 +7,42 @@ interface EntryPageProps {
 const EntryPage: React.FC<EntryPageProps> = ({ onComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  
-  const centerxRef = useRef<number>(0);
-  const centeryRef = useRef<number>(0);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-      setTimeout(onComplete, 1000); 
-    }, 5000);
 
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+  const centerxRef = useRef(0);
+  const centeryRef = useRef(0);
+  const expanseRef = useRef(false);
+  const collapseRef = useRef(false);
+  const starsRef = useRef<any[]>([]);
+  const animationCompleteRef = useRef(false);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
     if (!context) return;
 
-    const maxorbit = 255;
-    const stars: Star[] = []; 
-    let collapse = false; 
-    let expanse = false;
-    let startTime = new Date().getTime();
+    const stars = starsRef.current;
+    const maxorbit = 350;
+    let startTime = Date.now();
     let currentTime = 0;
 
-     const updateCanvasDimensions = () => {
+    const updateCanvasDimensions = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       centerxRef.current = canvas.width / 2;
       centeryRef.current = canvas.height / 2;
     };
- 
-    updateCanvasDimensions();
-     
-    window.addEventListener('resize', updateCanvasDimensions);
 
-    function rotate(cx: number, cy: number, x: number, y: number, angle: number) {
-      const cos = Math.cos(angle);
-      const sin = Math.sin(angle);
-      const nx = (cos * (x - cx)) + (sin * (y - cy)) + cx;
-      const ny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
-      return [nx, ny];
-    }
+    updateCanvasDimensions();
+    window.addEventListener("resize", updateCanvasDimensions);
+
+    const rotate = (cx: number, cy: number, x: number, y: number, angle: number) => {
+      const cos = Math.cos(angle), sin = Math.sin(angle);
+      return [(cos * (x - cx)) + (sin * (y - cy)) + cx, (cos * (y - cy)) - (sin * (x - cx)) + cy];
+    };
+
+    const randomAngle = () => Math.random() * Math.PI * 2;
+    const randomRadius = (min: number, max: number) => min + Math.sqrt(Math.random()) * (max - min);
 
     class Star {
       orbital: number;
@@ -88,163 +60,166 @@ const EntryPage: React.FC<EntryPageProps> = ({ onComplete }) => {
       prevR: number;
       prevX: number;
       prevY: number;
-      
+      opacity: number;
+      expanded: boolean;
+
       constructor() {
-        const rands = [];
-        rands.push(Math.random() * (maxorbit/2) + 1);
-        rands.push(Math.random() * (maxorbit/2) + maxorbit);
-        
-        this.orbital = (rands.reduce((p, c) => p + c, 0) / rands.length);
-        this.x = centerxRef.current;
-        this.y = centeryRef.current + this.orbital;
-        this.yOrigin = centeryRef.current + this.orbital;
-        this.speed = (Math.floor(Math.random() * 2.5) + 1.5) * Math.PI/180;
-        this.rotation = 0;
-        this.startRotation = (Math.floor(Math.random() * 360) + 1) * Math.PI/180;
+        const angle = randomAngle();
+        const radius = randomRadius(10, maxorbit);
+        const cx = centerxRef.current;
+        const cy = centeryRef.current;
+        const w = canvas ? canvas.width : 0;
+        const h = canvas ? canvas.height : 0;
+
+        this.orbital = radius;
+        this.x = cx;
+        this.y = cy + radius;
+        this.yOrigin = cy + radius;
+        this.speed = (Math.floor(Math.random() * 1.5) + 0.8) * Math.PI / 180;
+        this.rotation = angle;
+        this.startRotation = angle;
         this.id = stars.length;
-        
-        this.collapseBonus = this.orbital - (maxorbit * 0.7);
-        if (this.collapseBonus < 0) {
-          this.collapseBonus = 0;
-        }
-        
+        this.collapseBonus = Math.max(0, radius - (maxorbit * 0.7));
         stars.push(this);
-        this.color = `rgba(255,255,255,${1 - (this.orbital / 255)})`;
-        this.hoverPos = centeryRef.current + (maxorbit/2) + this.collapseBonus;
-        this.expansePos = centeryRef.current + (this.id % 100) * -10 + (Math.floor(Math.random() * 20) + 1);
-        
-        this.prevR = this.startRotation;
+
+        const baseOpacity = 1 - (radius / (maxorbit * 1.2));
+        this.opacity = baseOpacity * (0.7 + Math.random() * 0.3);
+        this.color = `rgba(255,255,255,${this.opacity})`;
+
+        this.hoverPos = cy + (maxorbit / 2) + this.collapseBonus;
+
+        const spread = Math.max(w, h) * 0.8;
+        const a = Math.random() * Math.PI * 2;
+        const d = Math.random() * spread;
+        this.expansePos = cy + (Math.sin(a) * d);
+
+        this.prevR = angle;
         this.prevX = this.x;
         this.prevY = this.y;
+        this.expanded = false;
       }
-      
+
       draw() {
         if (!context) return;
-        
-        if (!expanse) {
-          this.rotation = this.startRotation + (currentTime * this.speed);
-          if (!collapse) {  
-            if (this.y > this.yOrigin) {
-              this.y -= 2.5;
-            }
-            if (this.y < this.yOrigin - 4) {
-              this.y += (this.yOrigin - this.y) / 10;
-            }
-          } else { 
-            if (this.y > this.hoverPos) {
-              this.y -= (this.hoverPos - this.y) / -5;
-            }
-            if (this.y < this.hoverPos - 4) {
-              this.y += 2.5;
-            }
+        const speedMult = expanseRef.current ? 0.35 : 1;
+        const distFactor = 0.8 + (this.orbital / maxorbit) * 0.4;
+
+        if (!expanseRef.current) {
+          this.rotation = this.startRotation + (currentTime * this.speed * distFactor * speedMult);
+          if (!collapseRef.current) {
+            if (this.y > this.yOrigin) this.y -= 1.2;
+            else if (this.y < this.yOrigin - 4) this.y += (this.yOrigin - this.y) / 20;
+          } else {
+            if (this.y > this.hoverPos) this.y -= (this.hoverPos - this.y) / -10;
+            else if (this.y < this.hoverPos - 4) this.y += 1.2;
           }
         } else {
-          this.rotation = this.startRotation + (currentTime * (this.speed / 2));
-          if (this.y > this.expansePos) {
-            this.y -= Math.floor(this.expansePos - this.y) / -140;
+          this.rotation = this.startRotation + (currentTime * this.speed * 0.4);
+          const d = Math.abs(this.y - this.expansePos);
+          if (d < 20) {
+            this.expanded = true;
+            this.opacity = Math.max(0, this.opacity - 0.01);
+            this.color = `rgba(255,255,255,${this.opacity})`;
           }
+          const drift = (this.expansePos - this.y) / 200;
+          this.y += drift;
         }
-        
+
         context.save();
         context.fillStyle = this.color;
         context.strokeStyle = this.color;
         context.beginPath();
-        const oldPos = rotate(centerxRef.current, centeryRef.current, this.prevX, this.prevY, -this.prevR);
-        context.moveTo(oldPos[0], oldPos[1]);
+        const [ox, oy] = rotate(centerxRef.current, centeryRef.current, this.prevX, this.prevY, -this.prevR);
+        context.moveTo(ox, oy);
         context.translate(centerxRef.current, centeryRef.current);
         context.rotate(this.rotation);
         context.translate(-centerxRef.current, -centeryRef.current);
         context.lineTo(this.x, this.y);
         context.stroke();
         context.restore();
-        
+
         this.prevR = this.rotation;
         this.prevX = this.x;
         this.prevY = this.y;
       }
     }
-     
-    function init() {
+
+    const init = () => {
       if (!context) return;
       context.fillStyle = 'rgba(25,25,25,1)';
       context.fillRect(0, 0, canvas.width, canvas.height);
-       
-      const starCount = Math.min(2500, Math.floor((canvas.width * canvas.height) / 1000));
-      
-      for (let i = 0; i < starCount; i++) {
-        new Star();
-      }
-      
+      const count = Math.min(3500, Math.floor((canvas.width * canvas.height) / 800));
+      for (let i = 0; i < count; i++) new Star();
       requestAnimationFrame(loop);
-    }
-    
-    function loop() {
+    };
+
+    const loop = () => {
       if (!context) return;
-      
-      const now = new Date().getTime();
-      currentTime = (now - startTime) / 50;
-      
-      context.fillStyle = 'rgba(25,25,25,0.2)';
+      currentTime = (Date.now() - startTime) / 120;
+      context.fillStyle = 'rgba(25,25,25,0.15)';
       context.fillRect(0, 0, canvas.width, canvas.height);
-      
-      for (let i = 0; i < stars.length; i++) {
-        stars[i].draw();
+      for (let i = 0; i < stars.length; i++) stars[i].draw();
+
+      if (expanseRef.current && !animationCompleteRef.current) {
+        const expandedCount = stars.filter(s => s.expanded).length;
+        if (expandedCount / stars.length > 0.7) {
+          animationCompleteRef.current = true;
+          setIsOpen(true);
+          setTimeout(onComplete, 500);
+        }
       }
-      
       requestAnimationFrame(loop);
-    }
-
-
-    
-    const handleMouseOver = () => {
-        collapse = false;
-      expanse = true;
-      setIsOpen(true);
-      setTimeout(onComplete, 1000);
-      if (!expanse) {
-        collapse = true;
-      }
     };
-    
-    const handleMouseOut = () => {
-      if (!expanse) {
-        collapse = false;
-      }
+
+    const handleEnterClick = () => {
+      collapseRef.current = false;
+      expanseRef.current = true;
     };
-     
+
+    const autoStartTimer = setTimeout(() => {
+      if (!expanseRef.current) handleEnterClick();
+    }, 3000);
+
     setTimeout(() => {
-      const enterButton = document.querySelector('.centerHover');
-      if (enterButton) {
-    
-        enterButton.addEventListener('mouseover', handleMouseOver);
-        enterButton.addEventListener('mouseout', handleMouseOut);
+      const el = document.querySelector('.centerHover');
+      if (el) {
+        el.addEventListener('click', handleEnterClick);
+        el.addEventListener('mouseover', () => {
+          collapseRef.current = false;
+          expanseRef.current = true;
+        });
+        el.addEventListener('mouseout', () => {
+          if (!expanseRef.current) collapseRef.current = false;
+        });
       }
     }, 100);
-    
+
     init();
-    
+
     return () => {
-      window.removeEventListener('resize', updateCanvasDimensions);
-      const enterButton = document.querySelector('.centerHover');
-      if (enterButton) {
-         enterButton.removeEventListener('mouseover', handleMouseOver);
-        enterButton.removeEventListener('mouseout', handleMouseOut);
+      clearTimeout(autoStartTimer);
+      window.removeEventListener("resize", updateCanvasDimensions);
+      const el = document.querySelector('.centerHover');
+      if (el) {
+        el.removeEventListener('click', handleEnterClick);
+        el.removeEventListener('mouseover', () => {});
+        el.removeEventListener('mouseout', () => {});
       }
     };
   }, [onComplete]);
-  
+
   return (
-    <div 
-      id="blackhole" 
+    <div
+      id="blackhole"
       className={`fixed inset-0 z-50 ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-      style={{ 
-        transition: 'opacity 5s ease-in-out',
+      style={{
+        transition: 'opacity 1s ease-in-out',
         backgroundColor: 'rgba(25,25,25,1)',
         height: '100vh',
         width: '100vw'
       }}
     >
-      <div 
+      <div
         className={`centerHover ${isOpen ? 'open' : ''}`}
         style={{
           width: '255px',
@@ -260,22 +235,11 @@ const EntryPage: React.FC<EntryPageProps> = ({ onComplete }) => {
           cursor: 'pointer',
           lineHeight: '255px',
           textAlign: 'center',
-          transition: 'all 5000ms',
+          transition: 'all 0.5s ease-in-out',
           opacity: isOpen ? 0 : 1,
           pointerEvents: isOpen ? 'none' : 'auto'
         }}
-      >
-        <span style={{
-          color: '#666',
-          fontFamily: 'serif',
-          fontSize: '18px',
-          position: 'relative',
-          transition: 'all 5000ms',
-          display: 'inline-block'
-        }}>
-         
-        </span>
-      </div>
+      />
       <canvas
         ref={canvasRef}
         style={{
