@@ -7,7 +7,7 @@ if(localStorage.theme === 'dark' ||
 else{
   document.documentElement.classList.remove('dark');
 }
-import * as React from "react";
+import * as React from "react"; 
 import { createRoot } from 'react-dom/client'
 import './App.css'
 import AppComponent from './App'

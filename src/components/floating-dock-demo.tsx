@@ -4,8 +4,10 @@ import {
   IconBrandX,
   IconHome,
   IconBrandLinkedin,
-  IconLayoutList,
+  IconBrandLeetcode,
   IconBook,
+  
+
 } from "@tabler/icons-react";
 
 export default function FloatingDockDemo() {
@@ -20,7 +22,11 @@ export default function FloatingDockDemo() {
       icon: <IconBook className="..." />,
       href: "/blogs",
     },
-
+    {
+      title: "leetcode",
+      icon: <IconBrandLeetcode className="..." />,
+      href: "https://www.leetcode.com/whysooharsh/",
+    },
     {
       title: "LinkedIn",
       icon: <IconBrandLinkedin className="..." />,
