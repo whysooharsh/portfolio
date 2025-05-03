@@ -1,4 +1,4 @@
-import { FloatingDock } from "@/components/ui/floating-dock";
+import { FloatingDock } from "./ui/floating-dock";
 import {
   IconBrandGithub,
   IconBrandX,
@@ -6,40 +6,38 @@ import {
   IconBrandLinkedin,
   IconBrandLeetcode,
   IconBook,
-  
-
 } from "@tabler/icons-react";
 
 export default function FloatingDockDemo() {
   const links = [
     {
       title: "Home",
-      icon: <IconHome className="..." />,
+      icon: <IconHome className="w-5 h-5 sm:w-6 sm:h-6 text-purple-300" />,
       href: "/",
     },
     {
       title: "Blog",
-      icon: <IconBook className="..." />,
+      icon: <IconBook className="w-5 h-5 sm:w-6 sm:h-6 text-purple-300" />,
       href: "/blogs",
     },
     {
-      title: "leetcode",
-      icon: <IconBrandLeetcode className="..." />,
+      title: "Leetcode",
+      icon: <IconBrandLeetcode className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />,
       href: "https://www.leetcode.com/whysooharsh/",
     },
     {
       title: "LinkedIn",
-      icon: <IconBrandLinkedin className="..." />,
+      icon: <IconBrandLinkedin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />,
       href: "https://linkedin.com/in/harsharma45",
     },
     {
       title: "Twitter",
-      icon: <IconBrandX className="w-5 h-5 sm:w-6 sm:h-6 text-sky-400 dark:text-sky-300" />,
+      icon: <IconBrandX className="w-5 h-5 sm:w-6 sm:h-6 text-white" />,
       href: "https://twitter.com/whysooharsh",
     },
     {
       title: "GitHub",
-      icon: <IconBrandGithub className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-200 dark:text-neutral-100" />,
+      icon: <IconBrandGithub className="w-5 h-5 sm:w-6 sm:h-6 text-white" />,
       href: "https://github.com/whysooharsh",
     },
   ];

@@ -8,7 +8,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-} from "motion/react";
+} from "framer-motion";
 
 function isInternal(href: string) {
   return href.startsWith("/") && !href.startsWith("//");
@@ -32,8 +32,13 @@ export const FloatingDock = ({
         className
       )}
     >
-      {items.map((item) => (
-        <IconContainer key={item.title} mouseX={mouseX} {...item} />
+      {items.map((item, index) => (
+        <React.Fragment key={item.title}>
+          <IconContainer mouseX={mouseX} {...item} />
+          {index < items.length - 1 && (
+            <div className="w-[1px] h-6 bg-white/30 self-center" />
+          )}
+        </React.Fragment>
       ))}
     </motion.div>
   );
