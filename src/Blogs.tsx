@@ -29,8 +29,8 @@ const Blogs = () => {
 
       <div className="relative z-10 w-full flex flex-col items-center pt-6">
         <section className="max-w-4xl w-full mx-auto px-8 py-16 bg-black/80 rounded-3xl shadow-2xl text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-10 tracking-tight">
-            Blogs
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-10 tracking-tight">
+            tech stuff
           </h1>
           <div className="space-y-8 text-left">
             <details className="bg-black/60 rounded-2xl px-6 py-6 cursor-pointer group">
