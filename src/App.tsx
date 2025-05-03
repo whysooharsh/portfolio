@@ -41,18 +41,6 @@ function MainPage() {
       }
     });
 
-    // Parallax effect for spotlight
-    gsap.to('.spotlight-wrapper', {
-      yPercent: 50,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-
     // Section animations
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {

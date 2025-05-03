@@ -7,7 +7,7 @@ declare global {
 
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { GA_MEASUREMENT_ID } from "./config/analytics.ts";
+import { GA_MEASUREMENT_ID } from "./config/analytics";
 
 export function useAnalytics() {
   const location = useLocation();
