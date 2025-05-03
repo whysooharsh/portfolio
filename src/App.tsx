@@ -78,7 +78,7 @@ function MainPage() {
       <div className="relative z-10 flex justify-center">
         <div className="lg:w-[50%] w-[70%] max-w-5xl px-6">
           <ScrollProgress />
-          <div className="w-full flex justify-center items-center py-2 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
+          <div className="w-full flex justify-center items-center py-4 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
             <div className="flex gap-8 sm:gap-16 text-lg sm:text-xl md:text-lg">
               <a href="#home" className="text-white hover:text-purple-300 transition-colors font-semibold">
                 <ScrambleIn

@@ -1,5 +1,6 @@
 import { Spotlight } from "./components/spotlight-new.tsx";
 import { Link } from "react-router-dom";
+import ScrambleIn from "./components/ScrambleIn.tsx";
 
 export const Blogs = () => {
   return (
@@ -8,19 +9,29 @@ export const Blogs = () => {
         <Spotlight />
       </div>
 
-      <div className="w-full flex justify-center items-center py-6 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
+      <div className="w-full flex justify-center items-center py-4 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
         <div className="flex gap-8 sm:gap-16 text-lg sm:text-xl md:text-lg">
           <Link
             to="/"
             className="text-white hover:text-purple-300 transition-colors font-semibold"
           >
-            Home
+            <ScrambleIn
+              text="Home"
+              scrambleSpeed={30}
+              className="text-white"
+              scrambledClassName="text-purple-300"
+            />
           </Link>
           <Link
             to="/blogs"
             className="text-white hover:text-purple-300 transition-colors font-semibold"
           >
-            Blogs
+            <ScrambleIn
+              text="Blogs"
+              scrambleSpeed={30}
+              className="text-white"
+              scrambledClassName="text-purple-300"
+            />
           </Link>
         </div>
       </div>
