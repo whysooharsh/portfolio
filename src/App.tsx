@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Spotlight } from "./components/spotlight-new.tsx";
 import { ScrollProgress } from "./components/scroll-progress.tsx";
 import { Section } from "./components/Section.tsx";
-import { List } from "./components/List.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";

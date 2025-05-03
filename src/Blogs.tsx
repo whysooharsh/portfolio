@@ -1,7 +1,6 @@
-import * as React from "react";
+
 import { Spotlight } from "./components/spotlight-new.tsx";
 import { Link } from "react-router-dom";
-import FloatingDockDemo from "./components/floating-dock-demo.tsx";
 
 const Blogs = () => {
   return (
