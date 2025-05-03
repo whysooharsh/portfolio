@@ -1,4 +1,3 @@
-
 declare global {
   interface Window {
     dataLayer: any[];
@@ -8,7 +7,7 @@ declare global {
 
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { GA_MEASUREMENT_ID } from "./config/analytics";
+import { GA_MEASUREMENT_ID } from "./config/analytics.ts";
 
 export function useAnalytics() {
   const location = useLocation();
