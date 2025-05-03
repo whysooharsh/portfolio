@@ -5,6 +5,10 @@
 !/src
 !/src/**
 
+# Ignore sensitive configuration
+src/config/analytics.ts
+src/useranalytics.tsx
+
 # Allow .gitignore itself
 !.gitignore
 

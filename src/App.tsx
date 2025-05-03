@@ -14,6 +14,7 @@ import ProjectCard from './components/ProjectCard';
 import SkillsCloud from './components/SkillsCloud';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useAnalytics } from './useranalytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -324,19 +325,21 @@ function MainPage() {
   );
 }
 
-function AppComponent() {
-   
-  
+function AppWrapper() {
+  useAnalytics(); 
   return (
-    <>
-       
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/blogs" element={<Blogs />} />
-        </Routes>
-      </Router>
-    </>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/blogs" element={<Blogs />} />
+    </Routes>
+  );
+}
+
+function AppComponent() {
+  return (
+    <Router>
+      <AppWrapper />
+    </Router>
   );
 }
 
