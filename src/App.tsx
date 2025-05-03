@@ -11,7 +11,12 @@ import Blogs from "./Blogs.tsx";
 import FloatingDockDemo from "./components/floating-dock-demo.tsx";
 import InterstellarLinkedInButton from "./components/AnimatedLinkedInLink.tsx";
 import ScrambleIn from "./components/ScrambleIn.tsx";
+import ProjectCard from './components/ProjectCard';
+import SkillsCloud from './components/SkillsCloud';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 
 function MainPage() {
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -24,8 +29,55 @@ function MainPage() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    // Smooth scroll setup
+    gsap.to('html', {
+      scrollBehavior: 'smooth',
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        toggleActions: 'play none none reverse'
+      }
+    });
+
+    // Parallax effect for spotlight
+    gsap.to('.spotlight-wrapper', {
+      yPercent: 50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // Section animations
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+      gsap.fromTo(section,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom-=100',
+            end: 'top center',
+            toggleActions: 'play none none reverse',
+          }
+        }
+      );
+    });
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -65,7 +117,7 @@ function MainPage() {
                 <div className="text-white font-extrabold text-3xl sm:text-4xl md:text-5xl leading-tight">
                   <ScrambleIn
                     text="Hi, I'm Harsh"
-                    scrambleSpeed={40}
+                    scrambleSpeed={50}
                     scrambledLetterCount={3}
                     className="text-white"
                     scrambledClassName="text-purple-300"
@@ -74,7 +126,7 @@ function MainPage() {
                 <div className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg text-[1rem] text-gray-200 font-medium max-w-md">
                   <ScrambleIn
                     text="Third year undergrad here. I like to code, read, and play chess sometimes."
-                    scrambleSpeed={20}
+                    scrambleSpeed={7}
                     className="text-gray-200"
                     scrambledClassName="text-purple-200"
                   />
@@ -110,7 +162,7 @@ function MainPage() {
             <p className="text-sm sm:text-base md:text-lg text-[1rem] text-gray-200 font-medium bg-transparent">
               <ScrambleIn
                 text="I'm Harsh, a third year undergraduate passionate about coding, web development, and competitive programming. I enjoy building webapps, reading, and playing chess. I still pretend to understand programming memes."
-                scrambleSpeed={15}
+                scrambleSpeed={2}
                 className="text-gray-200"
                 scrambledClassName="text-gray-400"
                 scrambledLetterCount={4}
@@ -184,27 +236,17 @@ function MainPage() {
           </Section>
 
           <Section id="skills" title={
-  <div className="text-center w-full">
-    <ScrambleIn
-      text="Skills"
-      scrambleSpeed={40}
-      className="text-white"
-      scrambledClassName="text-purple-300"
-    />
-  </div>
-}>
-  <List
-    items={[
-      "C++",
-      "ReactJS",
-      "NodeJS",
-      "ExpressJS",
-      "JavaScript",
-      "Tailwind CSS",
-      "MongoDB",
-    ]} className="sm:text-sm"
-  />
-</Section>
+            <div className="text-center w-full">
+              <ScrambleIn
+                text="Skills"
+                scrambleSpeed={40}
+                className="text-white"
+                scrambledClassName="text-purple-300"
+              />
+            </div>
+          }>
+            <SkillsCloud />
+          </Section>
 
           <Section id="projects" title={
             <ScrambleIn
@@ -215,68 +257,46 @@ function MainPage() {
               scrambledClassName="text-purple-300"
             />
           }>
-            <ul className="space-y-14 text-center sm:text-left">
-              <li>
-                <h3 className="text-2xl font-bold text-purple-300 mb-4">
-                  <ScrambleIn
-                    text="Sumrise - Medium Alt"
-                    scrambleSpeed={40}
-                    className="text-purple-300"
-                    scrambledClassName="text-white"
-                    autoStart={hasScrolled}
-                  />
-                </h3>
-                <p className="text-xl text-gray-200">
-                  <ScrambleIn
-                    text="A full-stack blog site with React, Node, Express.js, and JWT auth. Features role-based access with security."
-                    scrambleSpeed={20}
-                    className="text-gray-200"
-                    scrambledClassName="text-gray-400"
-                    autoStart={hasScrolled}
-                  />
-                </p>
-              </li>
-              <li>
-                <h3 className="text-2xl font-bold text-purple-300 mb-4">
-                  <ScrambleIn
-                    text="Klaro"
-                    scrambleSpeed={40}
-                    className="text-purple-300"
-                    scrambledClassName="text-white"
-                    autoStart={hasScrolled}
-                  />
-                </h3>
-                <p className="text-xl text-gray-200">
-                  <ScrambleIn
-                    text="E-commerce platform with ML recommendations and virtual try-ons. Optimized with React & Tailwind."
-                    scrambleSpeed={20}
-                    className="text-gray-200"
-                    scrambledClassName="text-gray-400"
-                    autoStart={hasScrolled}
-                  />
-                </p>
-              </li>
-              <li>
-                <h3 className="text-2xl font-bold text-purple-300 mb-4">
-                  <ScrambleIn
-                    text="TNP Cell (WIP)"
-                    scrambleSpeed={40}
-                    className="text-purple-300"
-                    scrambledClassName="text-white"
-                    autoStart={hasScrolled}
-                  />
-                </h3>
-                <p className="text-xl text-gray-200">
-                  <ScrambleIn
-                    text="Platform for college placements — resume tracking, drive management, and student-company interface."
-                    scrambleSpeed={20}
-                    className="text-gray-200"
-                    scrambledClassName="text-gray-400"
-                    autoStart={hasScrolled}
-                  />
-                </p>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ProjectCard
+                title="Sumrise - Medium Alt"
+                description="A full-stack blog site with React, Node, Express.js, and JWT auth. Features role-based access with security and markdown support."
+                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1742397510/Screenshot_2025-02-22_012117_w7idcr.png"
+                technologies={["React", "Node.js", "Express", "MongoDB", "JWT"]}
+                link="https://github.com/whysooharsh/sumrise"
+              />
+              <ProjectCard
+                title="Klaro (WIP)"
+                description="E-commerce platform with ML recommendations and virtual try-ons. Optimized with React & Tailwind. Features real-time inventory management."
+                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746252934/Screenshot_2025-04-24_070235_ocjxi7.png"
+                technologies={["React", "TailwindCSS", "ML", "Node.js", "Redux", "Stripe"]}
+                link="https://github.com/whysooharsh/klaro"
+              />
+              <ProjectCard
+                title="TNP Cell (WIP)"
+                description="Platform for college placements — resume tracking, drive management, and student-company interface. Includes analytics dashboard."
+                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253434/Screenshot_2025-03-19_014213_qz7jid.png"
+                technologies={["React", "Node.js", "MongoDB", "Express"]}
+                link="https://github.com/whysooharsh/TNP_ITM"
+              />
+            
+              
+              <ProjectCard
+                title="EchoVault"
+                description="Echo Vault is an AI-powered memory capsule that securely stores and organizes personal data for easy recall and reflection."
+                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253136/Screenshot_2025-05-03_114842_wtuxhq.png"
+                technologies={["React", "Node.js", "MongoDB", "Express"]}
+                link="https://github.com/whysooharsh/EchoVault"
+              />
+
+              <ProjectCard
+                title="Portfolio"
+                description="This is my portfolio website that I built using React, TailwindCSS, and Framer Motion."
+                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253058/Screenshot_2025-05-03_114726_jfanvu.png"
+                technologies={["React", "TailwindCSS", "Framer Motion", "TypeScript"]}
+                link="https://github.com/whysooharsh/react-portfolio"
+              />
+            </div>
           </Section>
 
         <Section id="contact-me" title={
