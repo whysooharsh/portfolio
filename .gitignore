@@ -8,9 +8,11 @@
 # Ignore sensitive configuration
 src/config/analytics.ts
 
-
 # Allow .gitignore itself
 !.gitignore
+
+# Allow .env.example
+!.env.example
 
 # Ignore node_modules
 node_modules/

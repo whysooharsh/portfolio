@@ -6,7 +6,7 @@ import { Section } from "./components/Section.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Blogs from "./Blogs.tsx";
+import { Blogs } from "./Blogs.tsx";
 import FloatingDockDemo from "./components/floating-dock-demo.tsx";
 import InterstellarLinkedInButton from "./components/AnimatedLinkedInLink.tsx";
 import ScrambleIn from "./components/ScrambleIn.tsx";
@@ -14,7 +14,7 @@ import ProjectCard from './components/ProjectCard';
 import SkillsCloud from './components/SkillsCloud';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useAnalytics } from './useranalytics';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +30,7 @@ function MainPage() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Smooth scroll setup
+   
     gsap.to('html', {
       scrollBehavior: 'smooth',
       scrollTrigger: {
@@ -78,7 +78,7 @@ function MainPage() {
       <div className="relative z-10 flex justify-center">
         <div className="lg:w-[50%] w-[70%] max-w-5xl px-6">
           <ScrollProgress />
-          <div className="w-full flex justify-center items-center py-6 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
+          <div className="w-full flex justify-center items-center py-2 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
             <div className="flex gap-8 sm:gap-16 text-lg sm:text-xl md:text-lg">
               <a href="#home" className="text-white hover:text-purple-300 transition-colors font-semibold">
                 <ScrambleIn
@@ -105,7 +105,7 @@ function MainPage() {
                 <div className="text-white font-extrabold text-3xl sm:text-4xl md:text-5xl leading-tight">
                   <ScrambleIn
                     text="Hi, I'm Harsh"
-                    scrambleSpeed={50}
+                    scrambleSpeed={12}
                     scrambledLetterCount={3}
                     className="text-white"
                     scrambledClassName="text-purple-300"
@@ -114,7 +114,7 @@ function MainPage() {
                 <div className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg text-[1rem] text-gray-200 font-medium max-w-md">
                   <ScrambleIn
                     text="Third year undergrad here. I like to code, read, and play chess sometimes."
-                    scrambleSpeed={7}
+                    scrambleSpeed={10}
                     className="text-gray-200"
                     scrambledClassName="text-purple-200"
                   />
@@ -142,7 +142,7 @@ function MainPage() {
           <Section id="about" title={
             <ScrambleIn
               text="About Me"
-              scrambleSpeed={40}
+              scrambleSpeed={10}
               className="text-white"
               scrambledClassName="text-purple-300"
             />
@@ -150,7 +150,7 @@ function MainPage() {
             <p className="text-sm sm:text-base md:text-lg text-[1rem] text-gray-200 font-medium bg-transparent">
               <ScrambleIn
                 text="I'm Harsh, a third year undergraduate passionate about coding, web development, and competitive programming. I enjoy building webapps, reading, and playing chess. I still pretend to understand programming memes."
-                scrambleSpeed={2}
+                scrambleSpeed={6}
                 className="text-gray-200"
                 scrambledClassName="text-gray-400"
                 scrambledLetterCount={4}
@@ -161,7 +161,7 @@ function MainPage() {
           <Section id="education" title={
             <ScrambleIn
               text="Education"
-              scrambleSpeed={40}
+              scrambleSpeed={12}
               className="text-white"
               scrambledClassName="text-purple-300"
             />
@@ -183,7 +183,7 @@ function MainPage() {
               ].map((edu, index) => (
                 <div
                   key={index}
-                  className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-6 text-left"
+                  className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-2 text-left"
                 >
                   <div className="flex items-start gap-6 flex-1 min-w-0">
                     <span className="text-purple-300 text-5xl shrink-0">
@@ -193,7 +193,7 @@ function MainPage() {
                       <span className="text-sm sm:text-base md:text-lg font-bold text-white truncate">
                         <ScrambleIn
                           text={edu.title}
-                          scrambleSpeed={35}
+                          scrambleSpeed={20}
                           className="text-white"
                           scrambledClassName="text-purple-300"
                           autoStart={hasScrolled}
@@ -202,7 +202,7 @@ function MainPage() {
                       <span className="text-xs sm:text-sm text-gray-200 truncate">
                         <ScrambleIn
                           text={edu.subtitle}
-                          scrambleSpeed={30}
+                          scrambleSpeed={20}
                           className="text-gray-200"
                           scrambledClassName="text-gray-400"
                           autoStart={hasScrolled}
@@ -213,7 +213,7 @@ function MainPage() {
                   <div className="text-xs sm:text-sm text-gray-400 font-semibold md:text-right md:w-auto w-fit self-start md:self-auto">
                     <ScrambleIn
                       text={edu.date}
-                      scrambleSpeed={25}
+                      scrambleSpeed={10}
                       className="text-gray-400"
                       autoStart={hasScrolled}
                     />
@@ -227,7 +227,7 @@ function MainPage() {
             <div className="text-center w-full">
               <ScrambleIn
                 text="Skills"
-                scrambleSpeed={40}
+                scrambleSpeed={10}
                 className="text-white"
                 scrambledClassName="text-purple-300"
               />
@@ -239,7 +239,7 @@ function MainPage() {
           <Section id="projects" title={
             <ScrambleIn
               text="Projects"
-              scrambleSpeed={50}
+              scrambleSpeed={12}
               scrambledLetterCount={3}
               className="text-white"
               scrambledClassName="text-purple-300"
@@ -288,22 +288,27 @@ function MainPage() {
           </Section>
 
         <Section id="contact-me" title={
-  <div className="text-center w-full">
-    <ScrambleIn
-      text="Contact Me"
-      scrambleSpeed={40}
-      className="text-white"
-      scrambledClassName="text-purple-300"
-    />
-  </div>
-}>
-  <p className="text-xl sm:text-2xl text-gray-200 font-medium mb-8 text-center">
-    Drop a "Hi" if you want to connect!
-  </p>
-  <div className="flex justify-center gap-6 text-xl">
-    <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
-  </div>
-</Section>
+          <div className="text-center w-full">
+            <ScrambleIn
+              text="Contact Me"
+              scrambleSpeed={15}
+              className="text-white"
+              scrambledClassName="text-purple-300"
+            />
+          </div>
+        }>
+          <p className="text-xl sm:text-2xl text-gray-200 font-medium mb-8 text-center">
+            <ScrambleIn
+              text="Drop a 'Hi' if you want to connect!"
+              scrambleSpeed={18}
+              className="text-gray-200"
+              scrambledClassName="text-purple-300"
+            />
+          </p>
+          <div className="flex justify-center gap-6 text-xl">
+            <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
+          </div>
+        </Section>
 
           <div className="h-40" />
           <FloatingDockDemo />
@@ -314,7 +319,7 @@ function MainPage() {
 }
 
 function AppWrapper() {
-  useAnalytics(); 
+
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
@@ -325,7 +330,7 @@ function AppWrapper() {
 
 function AppComponent() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AppWrapper />
     </Router>
   );

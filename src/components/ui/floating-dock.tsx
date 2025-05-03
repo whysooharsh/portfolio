@@ -70,8 +70,8 @@ function IconContainer({
 
   const animatedSize = useSpring(size, {
     mass: 0.1,
-    stiffness: 100,
-    damping: 12,
+    stiffness: 120,
+    damping: 40,
   });
   const animatedIconSize = useSpring(iconSize, {
     mass: 0.1,
