@@ -55,7 +55,7 @@ function MainPage() {
 
     // Section animations
     const sections = document.querySelectorAll('section');
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
       gsap.fromTo(section,
         {
           opacity: 0,
@@ -282,7 +282,7 @@ function MainPage() {
             
               
               <ProjectCard
-                title="EchoVault"
+                title="EchoVault(WIP)"
                 description="Echo Vault is an AI-powered memory capsule that securely stores and organizes personal data for easy recall and reflection."
                 image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253136/Screenshot_2025-05-03_114842_wtuxhq.png"
                 technologies={["React", "Node.js", "MongoDB", "Express"]}
