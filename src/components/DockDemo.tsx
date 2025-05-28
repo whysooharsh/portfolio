@@ -85,7 +85,7 @@ const DATA = {
       },
       X: {
         name: "X",
-        url: "https://twitter.com/whysooharsh",
+        url: "https://twitter.com/harsh",
         icon: Icons.x,
       },
       LeetCode: {
