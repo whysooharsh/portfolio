@@ -2,7 +2,6 @@ import { CalendarIcon, HomeIcon, MailIcon, PencilIcon, BookIcon } from "lucide-r
 import { Link } from "react-router-dom";
 import React from "react";
 
-import { ModeToggle } from "./mode-toggle";
 import { buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
 import {
@@ -147,17 +146,6 @@ export function DockDemo() {
               </Tooltip>
             </DockIcon>
           ))}
-          <Separator orientation="vertical" className="h-full py-2" />
-          <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <ModeToggle className="rounded-full" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Theme</p>
-              </TooltipContent>
-            </Tooltip>
-          </DockIcon>
         </Dock>
       </TooltipProvider>
     </div>

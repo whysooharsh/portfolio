@@ -1,204 +1,142 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Spotlight } from "./components/spotlight-new.tsx";
-import { ScrollProgress } from "./components/scroll-progress.tsx";
-import { Section } from "./components/Section.tsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap, faSchool } from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Blogs } from "./Blogs.tsx";
-import InterstellarLinkedInButton from "./components/AnimatedLinkedInLink.tsx";
-import ProjectCard from './components/ProjectCard';
-import SkillsCloud from './components/SkillsCloud';
 import { DockDemo } from "./components/DockDemo";
+import SkillsCloud from './components/SkillsCloud';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faXTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faCode } from "@fortawesome/free-solid-svg-icons";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProjectCard from './components/ProjectCard';
+import ContactForm from './components/ContactForm';
+import { Blogs } from './Blogs';
 
 function MainPage() {
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setHasScrolled(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div className="font-FiraSans w-full min-h-screen bg-black/100 overflow-hidden">
+    <div className="font-FiraSans w-full min-h-screen bg-black text-white relative overflow-auto">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Spotlight />
       </div>
 
-      <div className="relative z-10 flex justify-center">
-        <div className="lg:w-[53%] w-[70%] max-w-5xl px-6">
-          <ScrollProgress />
-          <div className="w-full flex justify-center items-center py-4 sticky top-0 z-40 bg-transparent bg-opacity-80 backdrop-blur-md">
-          </div>
-
-          <div id="home" className="py-20 sm:py-10 md:py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
-              <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-lg">
-                <div className="text-white font-bold text-3xl sm:text-4xl md:text-6xl leading-tight mb-5">
-                  Hi, I'm Harsh
-                </div>
-                <div className="mt-2 text-base md:text-[16px] text-gray-200 font-medium">
-                  Third year undergrad here. I like to code, read, and play chess sometimes.
-                </div>
-                <div className="mt-2 text-base md:text-[16px] text-gray-200 font-medium">
-                  I love to build webapps and do CP for fun.
-                </div>
-              </div>
-              <div className="flex justify-center md:justify-end">
-                <img
-                  className="w-32 sm:w-40 md:w-52 lg:w-60 object-cover rounded-full shadow-2xl border-4 border-neutral-700"
-                  src="https://res.cloudinary.com/dpwqggym0/image/upload/v1745837467/GpeocHdXAAAGCrl_bbbdaj.jpg"
-                  loading="lazy"
-                  alt="Harsh"
-                />
-              </div>
-            </div>
-          </div>
-
-          <Section id="about" title={
-            <span className="text-white">About Me</span>
-          }>
-             <p className="text-base text-white mb-2 text-left font-FiraSans">
-             I'm Harsh, a third-year CS undergrad into coding, web dev, and competitive programming. I like building things,
-              solving problems, and learning—mostly by messing up first.
-              Off-screen, I read, overthink, and play chess. 
-              
-
-
-            </p>
-            {/* <p className="text-sm sm:text-base md:text-lg text-[14px] text-gray-200 bg-transparent">
-              I'm Harsh, a third year undergraduate passionate about coding, web development, and competitive programming. I enjoy building webapps, reading, and playing chess. I still pretend to understand programming memes.
-            </p> */}
-          </Section>
-
-          <Section id="education" title={
-            <span className="text-white">Education</span>
-          }>
-            <div className="space-y-10 flex flex-col">
-              {[
-                {
-                  icon: faGraduationCap,
-                  title: "Abdul Kalam Technical University",
-                  subtitle: "Bachelor of Technology in CSE",
-                  date: "2022 - 2026",
-                },
-                {
-                  icon: faSchool,
-                  title: "Central Board of Secondary Education",
-                  subtitle: "Senior Secondary (Class XII)",
-                  date: "2021 - 2022",
-                },
-              ].map((edu, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-2 text-left"
-                >
-                  <div className="flex items-start gap-6 flex-1 min-w-0">
-                    <span className="text-purple-300 text-5xl shrink-0">
-                      <FontAwesomeIcon icon={edu.icon} />
-                    </span>
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-sm sm:text-base md:text-lg font-bold text-white truncate">
-                        {edu.title}
-                      </span>
-                      <span className="text-xs sm:text-sm text-gray-200 truncate">
-                        {edu.subtitle}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-xs sm:text-sm text-gray-400 font-semibold md:text-right md:w-auto w-fit self-start md:self-auto">
-                    {edu.date}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section id="skills" title={
-            <div className="text-center w-full">
-              <span className="text-white">Skills</span>
-            </div>
-          }>
-            <SkillsCloud />
-          </Section>
-
-          <Section id="projects" title={
-            <span className="text-white">Projects</span>
-          }>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ProjectCard
-                title="Sumrise - Medium Alt"
-                description="A full-stack blog site with React, Node, Express.js, and JWT auth. Features role-based access with security and markdown support."
-                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1742397510/Screenshot_2025-02-22_012117_w7idcr.png"
-                technologies={["React", "Node.js", "Express", "MongoDB", "JWT"]}
-                link="https://github.com/whysooharsh/sumrise"
-              />
-              <ProjectCard
-                title="Klaro (WIP)"
-                description="E-commerce platform with ML recommendations and virtual try-ons. Optimized with React & Tailwind. Features real-time inventory management."
-                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746252934/Screenshot_2025-04-24_070235_ocjxi7.png"
-                technologies={["React", "TailwindCSS", "ML", "Node.js", "Redux", "Stripe"]}
-                link="https://github.com/whysooharsh/klaro"
-              />
-              <ProjectCard
-                title="TNP Cell (WIP)"
-                description="Platform for college placements — resume tracking, drive management, and student-company interface. Includes analytics dashboard."
-                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253434/Screenshot_2025-03-19_014213_qz7jid.png"
-                technologies={["React", "Node.js", "MongoDB", "Express"]}
-                link="https://github.com/whysooharsh/TNP_ITM"
-              />
-            
-              
-              {/* <ProjectCard
-                title="EchoVault(WIP)"
-                description="Echo Vault is an AI-powered memory capsule that securely stores and organizes personal data for easy recall and reflection."
-                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253136/Screenshot_2025-05-03_114842_wtuxhq.png"
-                technologies={["React", "Node.js", "MongoDB", "Express"]}
-                link="https://github.com/whysooharsh/EchoVault"
-              /> */}
-
-              <ProjectCard
-                title="Portfolio"
-                description="This is my portfolio website that I built using React, TailwindCSS, and Framer Motion."
-                image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253058/Screenshot_2025-05-03_114726_jfanvu.png"
-                technologies={["React", "TailwindCSS", "Framer Motion", "TypeScript"]}
-                link="https://github.com/whysooharsh/react-portfolio"
+      <div className="relative z-10 flex flex-col items-center px-6 md:px-8 py-10">
+       
+        <div className="w-full max-w-2xl flex flex-col md:flex-row items-center md:items-start gap-8 mb-10">
+          <div className="shrink-0 relative">
+            <div className="relative">
+              <img
+                className="w-32 h-32 object-cover rounded-full shadow-lg border-[2px] border-neutral-800 grayscale contrast-200"
+                src="https://res.cloudinary.com/dpwqggym0/image/upload/v1745837467/GpeocHdXAAAGCrl_bbbdaj.jpg"
+                loading="lazy"
+                alt="Harsh"
               />
             </div>
-          </Section>
-
-        <Section id="contact-me" title={
-          <div className="text-center w-full">
-            <span className="text-white">Contact Me</span>
           </div>
-        }>
-          <p className="text-xl sm:text-2xl text-gray-200 font-medium mb-8 text-center">
-            Drop a 'Hi' if you want to connect!
-          </p>
-          <div className="flex justify-center gap-6 text-xl">
-            <InterstellarLinkedInButton href="https://linkedin.com/in/harsharma45" />
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="text-4xl font-bold mb-2 flex items-center bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              Hi, I'm Harsh
+            </div>
+            <div className="text-lg text-gray-300 mb-4 flex items-center gap-2">
+              <span className="px-2 py-1 bg-neutral-900/50 rounded-sm text-sm font-medium">CS</span>
+              <span className="text-gray-500">•</span>
+              <span className="px-3 py-1 bg-neutral-900/50 rounded-full text-sm font-medium">Engineer</span>
+            </div>
+            <div className="flex gap-4 relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600/20 to-blue-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              <a href="https://github.com/whysooharsh" target="_blank" rel="noopener noreferrer" 
+                className="relative text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 bg-gray-800/30 p-2 rounded-lg hover:bg-gray-800/50">
+                <FontAwesomeIcon icon={faGithub} size="lg" />
+              </a>
+              <a href="https://x.com/whysooharsh" target="_blank" rel="noopener noreferrer" 
+                className="relative text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 bg-gray-800/30 p-2 rounded-lg hover:bg-gray-800/50">
+                <FontAwesomeIcon icon={faXTwitter} size="lg" />
+              </a>
+              <a href="https://linkedin.com/in/harsharma45" target="_blank" rel="noopener noreferrer" 
+                className="relative text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 bg-gray-800/30 p-2 rounded-lg hover:bg-gray-800/50">
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
+              </a>
+              <a href="https://leetcode.com/whysooharsh" target="_blank" rel="noopener noreferrer" 
+                className="relative text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 bg-gray-800/30 p-2 rounded-lg hover:bg-gray-800/50">
+                <FontAwesomeIcon icon={faCode} size="lg" />
+              </a>
+            </div>
           </div>
-        </Section>
-
-          <div className="h-40" />
-
-          <DockDemo />
         </div>
+
+        {/* About Me Section */}
+        <div className="w-full max-w-2xl mb-10">
+          <h2 className="text-2xl font-bold pb-2 mb-6 border-b border-gray-700">About Me.</h2>
+          <p className="text-base text-gray-300 leading-relaxed">
+          Hey! I’m Harsh, a computer science undergrad and backend-focused developer with a strong grip on C++, data structures, and the MERN stack. I’m currently diving deeper into PostgreSQL and Next.js while building my understanding of Low-level design.
+
+Outside tech, I read, write, sketch sometimes, and play a lot of chess. I’ve competed at the zonal level and currently rank in the top 1% on Chess[dot]com.
+
+
+</p>
+        </div>
+
+      
+        <div className="w-full max-w-2xl mb-10">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-xl font-medium text-white">Projects</h2>
+            <div className="flex-1 h-[1px] bg-white/10"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ProjectCard
+              title="Sumrise - Medium Alt"
+              description="A full-stack blog site with React, Node, Express.js, and JWT auth. Features role-based access with security and markdown support."
+              image="https://res.cloudinary.com/dpwqggym0/image/upload/v1742397510/Screenshot_2025-02-22_012117_w7idcr.png"
+              technologies={["React", "Node.js", "Express", "MongoDB", "JWT"]}
+              link="https://github.com/whysooharsh/sumrise"
+            />
+            <ProjectCard
+              title="Klaro (WIP)"
+              description="E-commerce platform with ML recommendations and virtual try-ons. Optimized with React & Tailwind. Features real-time inventory management."
+              image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746252934/Screenshot_2025-04-24_070235_ocjxi7.png"
+              technologies={["React", "TailwindCSS", "ML", "Node.js", "Redux", "Stripe"]}
+              link="https://github.com/whysooharsh/klaro"
+            />
+            <ProjectCard
+              title="TNP Cell (WIP)"
+              description="Platform for college placements — resume tracking, drive management, and student-company interface. Includes analytics dashboard."
+              image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253434/Screenshot_2025-03-19_014213_qz7jid.png"
+              technologies={["React", "Node.js", "MongoDB", "Express"]}
+              link="https://github.com/whysooharsh/TNP_ITM"
+            />
+            <ProjectCard
+              title="Portfolio"
+              description="This is my portfolio website that I built using React, TailwindCSS, and Framer Motion."
+              image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746253058/Screenshot_2025-05-03_114726_jfanvu.png"
+              technologies={["React", "TailwindCSS", "Framer Motion", "TypeScript"]}
+              link="https://github.com/whysooharsh/react-portfolio"
+            />
+          </div>
+        </div>
+
+       
+        <div className="w-full max-w-2xl mb-10">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-xl font-medium text-white">Skills</h2>
+            <div className="flex-1 h-[1px] bg-white/10"></div>
+          </div>
+          <SkillsCloud />
+        </div>
+
+     
+        <div className="w-full max-w-2xl mb-20">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-xl font-medium text-white">Contact Me</h2>
+            <div className="flex-1 h-[1px] bg-white/10"></div>
+          </div>
+          <ContactForm />
+        </div>
+
+        <DockDemo />
       </div>
     </div>
   );
 }
 
 function AppWrapper() {
-
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
