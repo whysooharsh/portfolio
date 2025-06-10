@@ -1,11 +1,9 @@
-import { Spotlight } from "./components/spotlight-new.tsx";
 import { DockDemo } from "./components/DockDemo";
 
 export const Blogs = () => {
   return (
     <div className="font-FiraSans w-full min-h-screen bg-black overflow-hidden flex flex-col items-center">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <Spotlight />
       </div>  
 
       <DockDemo />
