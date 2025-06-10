@@ -1,10 +1,5 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
 import { DockDemo } from "./components/DockDemo";
 import SkillsCloud from './components/SkillsCloud';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faXTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faCode } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
@@ -12,9 +7,10 @@ import { Blogs } from './Blogs';
 
 function MainPage() {
   return (
-    <div className="font-FiraSans w-full min-h-screen bg-neutral-950 text-white relative overflow-auto m-0 p-0">
-    <div className="fixed inset-0 z-0 pointer-events-none hidden md:block"></div>
-  
+    <div className="font-FiraSans min-h-screen bg-neutral-950 text-white relative overflow-auto m-0 p-0">
+
+    <div className="fixed inset-0 z-0 pointer-events-none hidden "></div>
+    
     <div className="relative z-10 flex flex-col w-full">
       <div className="w-full py-8 px-0 sm:px-4 md:px-8 md:py-12">
         <div className="w-full flex flex-col items-center gap-8 md:max-w-2xl md:mx-auto">
@@ -106,7 +102,7 @@ function MainPage() {
           </div>
         </div>
 
-        {/* Contact Section */}
+       
         <div className="w-full py-6 px-4 md:px-8 md:py-10">
           <div className="w-full md:max-w-2xl md:mx-auto">
             <div className="flex items-center gap-3 mb-8">
@@ -116,7 +112,9 @@ function MainPage() {
             <ContactForm />
           </div>
         </div>
+      <div className="pb-10 md:pb-20">
 
+      </div>
         <DockDemo />
       </div>
     </div>
