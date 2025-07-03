@@ -4,59 +4,86 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
 import { Blogs } from './Blogs';
+import {
+  GraduationCap,
+  ArrowUpRight,
+  Linkedin,
+  Twitter,
+  Github,
+  Mail,
+  School
+} from "lucide-react";
 
 function MainPage() {
-  return (
-    <div className="font-FiraSans min-h-screen bg-neutral-950 text-white relative overflow-auto m-0 p-0">
-
-    <div className="fixed inset-0 z-0 pointer-events-none hidden "></div>
-    
-    <div className="relative z-10 flex flex-col w-full">
-      <div className="w-full py-8 px-0 sm:px-4 md:px-8 md:py-12">
-        <div className="w-full flex flex-col items-center gap-8 md:max-w-2xl md:mx-auto">
-          <div className="shrink-0 relative">
-            <img
-              className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full shadow-lg border-[2px] border-neutral-800 grayscale contrast-200"
-              src="https://res.cloudinary.com/dpwqggym0/image/upload/v1745837467/GpeocHdXAAAGCrl_bbbdaj.jpg"
-              loading="lazy"
-              alt="Harsh"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center space-y-4">
-            <div className="text-4xl md:text-5xl font-bold flex items-center bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              Hi, I'm Harsh
-            </div>
-            <div className="text-base md:text-lg text-gray-300 flex items-center gap-3">
-              <span className="px-1 py-1.5 rounded-sm text-sm font-medium">CS</span>
-              <span className="text-gray-500">•</span>
-              <span className="px-1 py-1.5 rounded-full text-sm font-medium">Engineer</span>
-              <span className="text-gray-500">•</span>
-              <span className="px-1 py-1.5 rounded-full text-sm font-medium">Developer</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
   
 
-       
-        <div className="py-6 px-4  md:py-4">
-          <div className="md:max-w-2xl md:mx-auto">
-            <h2 className="text-2xl font-bold pb-2 mb-6 border-b border-gray-700">About Me.</h2>
-            <p className="text-base text-gray-300 leading-relaxed">
-              Hey! I'm Harsh, a computer science undergrad and backend-focused developer with a strong grip on C++, data structures, and the MERN stack. I'm currently diving deeper into PostgreSQL and Next.js while building my understanding of Low-level design.
+  return (
+    <div className="font-FiraSans min-h-screen bg-neutral-950 text-white relative overflow-auto m-0 p-0">
+      <div className="fixed inset-0 z-0 pointer-events-none hidden"></div>
+      <div className="relative z-10 flex flex-col w-full">
 
-              Outside tech, I read, write, sketch sometimes, and play a lot of chess. I've competed at the zonal level and currently rank in the top 1% on Chess[dot]com.
-            </p>
+        <div className="w-full py-8 px-0 sm:px-4 md:px-8 md:py-20">
+          <div className="w-full flex flex-col md:flex-row items-start gap-6 md:max-w-2xl md:mx-auto">
+            <div className="shrink-0">
+              <img
+                className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full shadow-lg border-[2px] border-neutral-800 grayscale contrast-200"
+                src="https://res.cloudinary.com/dpwqggym0/image/upload/v1745837467/GpeocHdXAAAGCrl_bbbdaj.jpg"
+                loading="lazy"
+                alt="Harsh"
+              />
+            </div>
+
+            <div className="flex-1">
+              <h1 className="text-3xl font-light text-white mb-3">Harsh Sharma</h1>
+              <p className="text-gray-400 mb-2 text-sm">
+                Full-stack developer with a strong foundation in <span className="text-white">C++</span>, data structures, and the <span className="text-white">MERN</span> stack.
+              </p>
+
+              <p className="text-gray-400 mb-2 text-sm">
+                Outside tech, I read, write, sketch occasionally, and play chess.
+              </p>
+
+
+              <div className="flex gap-4">
+                <a
+                  href="https://linkedin.com/in/harsharma45"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="w-4 h-4 text-gray-500 hover:text-white cursor-pointer transition-colors" />
+                </a>
+
+                <a
+                  href="https://twitter.com/harsh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Twitter className="w-4 h-4 text-gray-500 hover:text-white cursor-pointer transition-colors" />
+                </a>
+
+                <a
+                  href="https://github.com/whysooharsh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="w-4 h-4 text-gray-500 hover:text-white cursor-pointer transition-colors" />
+                </a>
+
+                <a href="mailto:imharsharma45@gmail.com">
+                  <Mail className="w-4 h-4 text-gray-500 hover:text-white cursor-pointer transition-colors" />
+                </a>
+              </div>
+
+            </div>
           </div>
         </div>
 
-        {/* Projects Section */}
+
         <div className="w-full py-6 px-4 md:px-8 md:py-10">
           <div className="w-full md:max-w-2xl md:mx-auto">
-            <div className="flex items-center gap-3 mb-8">
-              <h2 className="text-2xl font-bold text-white">Projects</h2>
-              <div className="flex-1 h-[1px] bg-white/10"></div>
+            <div className="mb-6">
+              <h2 className="text-xl font-light text-white mb-3">Projects</h2>
+              <p className="text-sm text-gray-400">A few things I’ve built recently.</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
               <ProjectCard
@@ -91,30 +118,80 @@ function MainPage() {
           </div>
         </div>
 
-        {/* Skills Section */}
         <div className="w-full py-6 px-4 md:px-8 md:py-10">
           <div className="w-full md:max-w-2xl md:mx-auto">
-            <div className="flex items-center gap-3 mb-8">
-              <h2 className="text-2xl font-bold text-white">Skills</h2>
-              <div className="flex-1 h-[1px] bg-white/10"></div>
+            <div className="mb-6">
+              <h2 className="text-xl font-light text-white mb-3">Skills</h2>
+              <p className="text-sm text-gray-400">Technologies & tools I’m good at.</p>
             </div>
             <SkillsCloud />
           </div>
         </div>
 
-       
+       {/* Education Section */}
+<div className="w-full py-6 px-4 md:px-8 md:py-10">
+  <div className="w-full md:max-w-2xl md:mx-auto mb-16">
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center gap-2">
+        <GraduationCap className="w-4 h-4 text-gray-500" />
+        <h2 className="text-lg font-light text-white">Education</h2>
+      </div>
+    </div>
+
+    <div className="flex flex-col gap-5">
+      {[
+        {
+          name: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
+          icon: <GraduationCap className="w-5 h-5 text-white" />,
+          degree: "B.Tech in Computer Science",
+          time: "2022 - Present",
+          details: "Focused on Programming and Data Structures."
+        },
+        {
+          name: "Central Board of Secondary Education (CBSE)",
+          icon: <School className="w-5 h-5 text-white" />,
+          degree: "Senior Secondary Education",
+          time: "2021 - 2022",
+          details: "Specialized in science and mathematics."
+        }
+      ].map((school, index) => (
+        <div
+          key={index}
+          className="flex flex-col sm:flex-row sm:items-start gap-4 bg-black/40 border border-white/5 p-4 rounded-lg hover:border-white/10 transition-all duration-300"
+        >
+          <div className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-md">
+            {school.icon}
+          </div>
+
+          <div className="flex-1">
+            <h3 className="text-white font-semibold text-sm sm:text-base mb-1">
+              {school.name}
+            </h3>
+            <p className="text-gray-400 text-xs mb-1">
+              {school.degree} <span className="text-gray-500">· {school.time}</span>
+            </p>
+            <p className="text-gray-500 text-xs leading-relaxed">
+              {school.details}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+
         <div className="w-full py-6 px-4 md:px-8 md:py-10">
           <div className="w-full md:max-w-2xl md:mx-auto">
-            <div className="flex items-center gap-3 mb-8">
-              <h2 className="text-2xl font-bold text-white">Contact Me</h2>
-              <div className="flex-1 h-[1px] bg-white/10"></div>
+            <div className="mb-6">
+              <h2 className="text-xl font-light text-white mb-3">Contact Me</h2>
+              <p className="text-sm text-gray-400">Want to collaborate or just say hi?</p>
             </div>
             <ContactForm />
           </div>
         </div>
-      <div className="pb-10 md:pb-20">
 
-      </div>
+        <div className="pb-10 md:pb-20" />
         <DockDemo />
       </div>
     </div>
