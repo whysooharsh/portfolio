@@ -64,14 +64,14 @@ const ContactForm: React.FC = () => {
         <form ref={formRef} onSubmit={sendEmail} className="space-y-3">
           <input
             type="text"
-            name="user_name"
+            name="from_name" 
             required
             className="w-full px-3 py-1.5 bg-neutral-800/70 text-white text-sm rounded-md border border-white/10 focus:ring-1 focus:ring-white/20 focus:border-white/20 outline-none"
             placeholder="Full Name"
           />
           <input
             type="email"
-            name="user_email"
+            name="from_email"
             required
             className="w-full px-3 py-1.5 bg-neutral-800/70 text-white text-sm rounded-md border border-white/10 focus:ring-1 focus:ring-white/20 focus:border-white/20 outline-none"
             placeholder="Email Address"
