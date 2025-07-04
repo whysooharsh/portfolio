@@ -69,7 +69,7 @@ function MainPage() {
                 link="https://github.com/whysooharsh/sumrise"
               />
               <ProjectCard
-                title="Klaro (WIP)"
+                title="Klaro "
                 description="E-commerce platform with ML recommendations and virtual try-ons. Optimized with React & Tailwind. Features real-time inventory management."
                 image="https://res.cloudinary.com/dpwqggym0/image/upload/v1746252934/Screenshot_2025-04-24_070235_ocjxi7.png"
                 technologies={["React", "TailwindCSS", "ML", "Node.js", "Redux", "Stripe"]}
