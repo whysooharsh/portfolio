@@ -29,7 +29,7 @@ export const ModeToggle = forwardRef<HTMLButtonElement, { className?: string }>(
           className
         )}
       >
-        {theme === "dark" ? (
+        {theme === "light" ? (
           <Sun className="h-5 w-5 text-white" />
         ) : (
           <Moon className="h-5 w-5 text-white" />
