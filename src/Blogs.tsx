@@ -1,4 +1,4 @@
-import { DockDemo } from "./components/DockDemo";
+import { DockDemo } from "./components/ui/DockDemo";
 
 export const Blogs = () => {
   return (

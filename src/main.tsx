@@ -1,16 +1,17 @@
+const theme = localStorage.getItem("theme") || "light";
+const root = document.documentElement;
 
-if(localStorage.theme === 'dark' || 
-  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme:dark').matches)
-){
-  document.documentElement.classList.add('dark');
+if (theme === "light") {
+  root.classList.add("light");
+} else {
+  root.classList.remove("light");
 }
-else{
-  document.documentElement.classList.remove('dark');
-}
+
 import * as React from "react"; 
 import { createRoot } from 'react-dom/client'
 import './App.css'
-import AppComponent from './App'
+import AppComponent from './App'  
+ 
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

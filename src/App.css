@@ -8,6 +8,11 @@
     font-family: 'Fira Sans', sans-serif;
 }
 
+.nocaret {
+  caret-color: transparent;
+  user-select: none;
+}
+
 @layer base {
   :root {
         --background: 0 0% 100%;

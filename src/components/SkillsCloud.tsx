@@ -37,7 +37,7 @@ const SkillsCloud: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.05 }}
           >
-            <div className="relative w-12 h-12 bg-black/40 backdrop-blur-sm rounded-lg border border-white/5 hover:border-white/10 transition-all duration-300 p-2">
+            <div className="w-14 h-14 p-2">
               <motion.div
                 className="w-full h-full"
                 whileHover={{ scale: 1.1 }}
@@ -46,12 +46,12 @@ const SkillsCloud: React.FC = () => {
                 <img
                   src={skill.icon}
                   alt={skill.name}
-                  className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="w-full h-full object-contain filter hover:grayscale-0 transition-all duration-300"
                 />
               </motion.div>
             </div>
             <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-              <span className="text-xs text-gray-300 bg-black/80 px-2 py-1 rounded-full border border-white/5">
+              <span className="text-xs text-gray-900 dark:text-gray-300 bg-white/90 dark:bg-black/80 px-2 py-1 rounded-full border border-gray-200 dark:border-white/5 shadow-sm">
                 {skill.name}
               </span>
             </div>
@@ -62,4 +62,4 @@ const SkillsCloud: React.FC = () => {
   );
 };
 
-export default SkillsCloud; 
+export default SkillsCloud;

@@ -14,7 +14,7 @@ export function Dock({ children, direction = "middle", className }: DockProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-4 flex h-16 items-end gap-4 rounded-2xl bg-black/80 p-4 shadow-lg backdrop-blur-lg",
+        "fixed bottom-4 flex h-16 items-center gap-2 rounded-2xl bg-black/80 px-4 py-2 shadow-lg backdrop-blur-lg border border-white/10",
         direction === "left" && "left-4",
         direction === "right" && "right-4",
         direction === "middle" && "left-1/2 -translate-x-1/2",
@@ -34,9 +34,9 @@ export function DockIcon({ children, className }: DockIconProps) {
         className
       )}
     >
-      <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-transparent transition-transform duration-300 group-hover:scale-150">
+      <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-transparent transition-all duration-300 ease-out group-hover:scale-125 group-hover:bg-white/10">
         {children}
       </div>
     </div>
   );
-} 
+}
