@@ -13,7 +13,7 @@ export function HeroSection() {
         <div className="flex-shrink-0 flex justify-center sm:justify-start">
           <img
             className="w-24 h-24 object-cover rounded-full shadow-lg border-[2px] border-neutral-800 grayscale contrast-200"
-            src="https://res.cloudinary.com/dpwqggym0/image/upload/v1745837467/GpeocHdXAAAGCrl_bbbdaj.jpg"
+            src="https://res.cloudinary.com/dlvjrvhak/image/upload/v1752088049/20250710_0035_Man_with_Glasses_remix_01jzr94rdeee2tkacernzj50jg_nqkirv.png"
             loading="lazy"
             alt="Harsh Sharma"
           />
