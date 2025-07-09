@@ -4,7 +4,7 @@ import { Icons } from './icons';
 
 export const NAVIGATION = [
   { href: "/", icon: HomeIcon, label: "Home" },
-  { href: "/blogs", icon: BookIcon, label: "Resources" },
+  
 ];
 
 
