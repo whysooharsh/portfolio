@@ -53,7 +53,10 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+  		fontFamily: {
+  			'Inter': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  		},
   	}
   },
   plugins: [
@@ -61,4 +64,4 @@ export default {
     require('@tailwindcss/typography'),
     require('tailwindcss-animate')
   ],
-} 
+}

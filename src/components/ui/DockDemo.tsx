@@ -58,7 +58,7 @@ const Icons = {
     </svg>
   ),
   leetcode: (props: IconProps) => (
-    <svg viewBox="0 0 50 50" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M37.6 32.6c-0.6-0.6-1.5-0.6-2.1 0l-6.2 6.2c-2.2 2.2-5.8 2.2-8 0l-8.1-8.1c-2.2-2.2-2.2-5.8 0-8l8.1-8.1c2.2-2.2 5.8-2.2 8 0l6.2 6.2c0.6 0.6 1.5 0.6 2.1 0s0.6-1.5 0-2.1l-6.2-6.2c-3.4-3.4-8.9-3.4-12.3 0l-8.1 8.1c-3.4 3.4-3.4 8.9 0 12.3l8.1 8.1c3.4 3.4 8.9 3.4 12.3 0l6.2-6.2c0.6-0.6 0.6-1.5 0-2.1z" />
       <path d="M34.2 22.1H19.7c-0.8 0-1.4 0.6-1.4 1.4s0.6 1.4 1.4 1.4h14.5c0.8 0 1.4-0.6 1.4-1.4s-0.6-1.4-1.4-1.4z" />
     </svg>
@@ -110,7 +110,7 @@ export function DockDemo() {
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full text-white hover:text-white hover:bg-white/10"
+                      "size-12 rounded-full text-black dark:text-white hover:text-white "
                     )}
                   >
                     <item.icon className="size-4" />
@@ -134,7 +134,7 @@ export function DockDemo() {
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full text-white hover:text-white hover:bg-white/10"
+                      "size-12 rounded-full text-black dark:text-white hover:text-white"
                     )}
                   >
                     <social.icon className="size-4" />
@@ -150,7 +150,7 @@ export function DockDemo() {
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <ModeToggle className="rounded-full text-white hover:text-white hover:bg-white/10" />
+                <ModeToggle className="rounded-full text-black  hover:text-white" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Theme</p>

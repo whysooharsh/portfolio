@@ -1,7 +1,8 @@
 import { Moon, Sun } from "lucide-react";
 import { useState, useEffect, forwardRef } from "react";
-import { cn } from "../lib/utils";
-export const ModeToggle = forwardRef<HTMLButtonElement, { className?: string }>(
+import { cn } from "../../lib/utils";
+
+export const ThemeToggle = forwardRef<HTMLButtonElement, { className?: string }>(
   ({ className }, ref) => {
     const [theme, setTheme] = useState(() => {
       if (typeof window !== "undefined") {
@@ -39,4 +40,4 @@ export const ModeToggle = forwardRef<HTMLButtonElement, { className?: string }>(
   }
 );
 
-ModeToggle.displayName = "ModeToggle"; 
+ThemeToggle.displayName = "ThemeToggle";
